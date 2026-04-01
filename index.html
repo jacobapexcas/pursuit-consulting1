@@ -1,985 +1,734 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="editorial">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pursuit Consulting | Modern Talent Acquisition. Built for Growth.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #0B1D2E;
-    --navy-light: #132D45;
-    --slate: #1A3A54;
-    --gold: #C9A84C;
-    --gold-light: #E4C76B;
-    --cream: #F5F0E8;
-    --cream-dark: #E8E0D0;
-    --white: #FFFFFF;
-    --text-primary: #0B1D2E;
-    --text-secondary: #4A6274;
-    --text-light: #8FA3B3;
-    --text-on-dark: #C8D6E0;
-    --section-padding: clamp(60px, 10vw, 120px);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4, h5 {
-    font-family: 'DM Serif Display', serif;
-    font-weight: 400;
-    line-height: 1.15;
-  }
-
-  /* ===================== NAV ===================== */
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 0 clamp(24px, 5vw, 80px);
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(11, 29, 46, 0.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(201, 168, 76, 0.12);
-    transition: all 0.4s ease;
-  }
-
-  nav.scrolled {
-    background: rgba(11, 29, 46, 0.97);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
-  }
-
-  .nav-logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.25rem;
-    color: var(--white);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-  }
-
-  .nav-logo span { color: var(--gold); }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-links a {
-    color: var(--text-on-dark);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-    position: relative;
-  }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1.5px;
-    background: var(--gold);
-    transition: width 0.3s ease;
-  }
-
-  .nav-links a:hover { color: var(--white); }
-  .nav-links a:hover::after { width: 100%; }
-
-  .nav-cta {
-    padding: 10px 24px !important;
-    background: var(--gold) !important;
-    color: var(--navy) !important;
-    border-radius: 4px;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    font-size: 0.8rem !important;
-    letter-spacing: 0.06em !important;
-    transition: all 0.3s !important;
-  }
-
-  .nav-cta:hover {
-    background: var(--gold-light) !important;
-    transform: translateY(-1px);
-  }
-
-  .nav-cta::after { display: none !important; }
-
-  /* Mobile nav toggle */
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-  }
-  .nav-toggle span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--white);
-    transition: all 0.3s;
-  }
-
-  /* ===================== HERO ===================== */
-  .hero {
-    min-height: 100vh;
-    background: var(--navy);
-    display: flex;
-    align-items: center;
-    padding: 120px clamp(24px, 5vw, 80px) var(--section-padding);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 80%;
-    height: 200%;
-    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3), transparent);
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(40px, 6vw, 100px);
-    max-width: 1280px;
-    margin: 0 auto;
-    width: 100%;
-    align-items: center;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    width: 32px;
-    height: 1.5px;
-    background: var(--gold);
-  }
-
-  .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: var(--white);
-    margin-bottom: 28px;
-    letter-spacing: -0.01em;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-text {
-    font-size: 1.1rem;
-    color: var(--text-on-dark);
-    max-width: 520px;
-    margin-bottom: 40px;
-    line-height: 1.7;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    padding: 14px 32px;
-    background: var(--gold);
-    color: var(--navy);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    border-radius: 4px;
-    transition: all 0.3s;
-  }
-
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(201, 168, 76, 0.25);
-  }
-
-  .btn-outline {
-    display: inline-block;
-    padding: 14px 32px;
-    border: 1.5px solid rgba(201, 168, 76, 0.4);
-    color: var(--gold);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    border-radius: 4px;
-    transition: all 0.3s;
-  }
-
-  .btn-outline:hover {
-    border-color: var(--gold);
-    background: rgba(201, 168, 76, 0.08);
-  }
-
-  /* Hero stats column */
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    background: rgba(201, 168, 76, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .stat-card {
-    background: var(--navy-light);
-    padding: clamp(24px, 3vw, 40px);
-    text-align: center;
-  }
-
-  .stat-card .number {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    color: var(--gold);
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .stat-card .label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-on-dark);
-    font-weight: 500;
-  }
-
-  /* ===================== POSITIONING BAR ===================== */
-  .position-bar {
-    background: var(--gold);
-    padding: 28px clamp(24px, 5vw, 80px);
-    text-align: center;
-  }
-
-  .position-bar p {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1rem, 1.8vw, 1.3rem);
-    color: var(--navy);
-    max-width: 900px;
-    margin: 0 auto;
-    letter-spacing: 0.01em;
-  }
-
-  /* ===================== SERVICES (Two Engines) ===================== */
-  .services {
-    padding: var(--section-padding) clamp(24px, 5vw, 80px);
-    background: var(--cream);
-  }
-
-  .services-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 60px;
-  }
-
-  .section-eyebrow {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .section-eyebrow::before,
-  .section-eyebrow::after {
-    content: '';
-    width: 20px;
-    height: 1.5px;
-    background: var(--gold);
-  }
-
-  .services-header h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--navy);
-    margin-bottom: 20px;
-  }
-
-  .services-header p {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-    line-height: 1.7;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .service-card {
-    background: var(--white);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 20px rgba(11, 29, 46, 0.06);
-    transition: all 0.4s ease;
-    border: 1px solid rgba(11, 29, 46, 0.06);
-  }
-
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(11, 29, 46, 0.1);
-  }
-
-  .service-card-header {
-    padding: 40px 36px 32px;
-    border-bottom: 1px solid rgba(11, 29, 46, 0.06);
-  }
-
-  .service-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--navy);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-
-  .service-icon svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--gold);
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .engine-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-
-  .service-card h3 {
-    font-size: 1.6rem;
-    color: var(--navy);
-    margin-bottom: 12px;
-  }
-
-  .service-card-header p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .service-card-body {
-    padding: 32px 36px;
-  }
-
-  .service-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .service-list li {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    font-size: 0.925rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  .service-list li::before {
-    content: '';
-    flex-shrink: 0;
-    width: 6px;
-    height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-    margin-top: 8px;
-  }
-
-  .service-card-footer {
-    padding: 0 36px 36px;
-  }
-
-  .service-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--navy);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    transition: gap 0.3s;
-  }
-
-  .service-link:hover { gap: 14px; }
-
-  .service-link svg {
-    width: 16px;
-    height: 16px;
-    stroke: var(--gold);
-    fill: none;
-    stroke-width: 2;
-  }
-
-  /* ===================== DIFFERENTIATORS ===================== */
-  .differentiators {
-    padding: var(--section-padding) clamp(24px, 5vw, 80px);
-    background: var(--navy);
-    position: relative;
-  }
-
-  .diff-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .diff-header {
-    max-width: 600px;
-    margin-bottom: 60px;
-  }
-
-  .diff-header .section-eyebrow {
-    color: var(--gold);
-  }
-
-  .diff-header h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--white);
-    margin-bottom: 20px;
-  }
-
-  .diff-header p {
-    color: var(--text-on-dark);
-    font-size: 1.05rem;
-    line-height: 1.7;
-  }
-
-  .diff-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: rgba(201, 168, 76, 0.15);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .diff-card {
-    background: var(--navy-light);
-    padding: clamp(28px, 3vw, 44px);
-    transition: background 0.3s;
-  }
-
-  .diff-card:hover {
-    background: var(--slate);
-  }
-
-  .diff-number {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5rem;
-    color: rgba(201, 168, 76, 0.2);
-    margin-bottom: 16px;
-    line-height: 1;
-  }
-
-  .diff-card h4 {
-    font-size: 1.15rem;
-    color: var(--white);
-    margin-bottom: 12px;
-  }
-
-  .diff-card p {
-    color: var(--text-on-dark);
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  /* ===================== PROOF / CASE STUDIES ===================== */
-  .proof {
-    padding: var(--section-padding) clamp(24px, 5vw, 80px);
-    background: var(--cream);
-  }
-
-  .proof-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .proof-header {
-    text-align: center;
-    max-width: 650px;
-    margin: 0 auto 60px;
-  }
-
-  .proof-header h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--navy);
-    margin-bottom: 16px;
-  }
-
-  .proof-header p {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-  }
-
-  .proof-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-
-  .proof-card {
-    background: var(--white);
-    border-radius: 8px;
-    padding: clamp(32px, 4vw, 52px);
-    border: 1px solid rgba(11, 29, 46, 0.06);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .proof-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-light));
-  }
-
-  .proof-tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    font-weight: 700;
-    background: rgba(201, 168, 76, 0.1);
-    padding: 5px 12px;
-    border-radius: 3px;
-    margin-bottom: 20px;
-  }
-
-  .proof-card h3 {
-    font-size: 1.5rem;
-    color: var(--navy);
-    margin-bottom: 16px;
-  }
-
-  .proof-card > p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin-bottom: 28px;
-  }
-
-  .proof-results {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .proof-result {
-    background: var(--cream);
-    padding: 16px;
-    border-radius: 6px;
-  }
-
-  .proof-result .val {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    color: var(--navy);
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .proof-result .desc {
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  /* ===================== ABOUT ===================== */
-  .about {
-    padding: var(--section-padding) clamp(24px, 5vw, 80px);
-    background: var(--white);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: clamp(40px, 6vw, 100px);
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: center;
-  }
-
-  .about-visual {
-    position: relative;
-  }
-
-  .about-visual-block {
-    background: var(--navy);
-    border-radius: 8px;
-    padding: clamp(36px, 4vw, 56px);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .about-visual-block::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60%;
-    height: 100%;
-    background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.08) 0%, transparent 60%);
-  }
-
-  .about-quote {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
-    color: var(--white);
-    line-height: 1.4;
-    margin-bottom: 24px;
-    position: relative;
-  }
-
-  .about-quote::before {
-    content: '\201C';
-    font-size: 4rem;
-    color: var(--gold);
-    line-height: 0;
-    position: absolute;
-    top: 10px;
-    left: -8px;
-    opacity: 0.4;
-  }
-
-  .about-attrib {
-    color: var(--gold);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .about-content h2 {
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    color: var(--navy);
-    margin-bottom: 24px;
-  }
-
-  .about-content p {
-    color: var(--text-secondary);
-    font-size: 1.025rem;
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-
-  .about-content p:last-of-type {
-    margin-bottom: 32px;
-  }
-
-  .about-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .about-tag {
-    padding: 8px 18px;
-    border: 1.5px solid var(--cream-dark);
-    border-radius: 40px;
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
-
-  /* ===================== CTA BAND ===================== */
-  .cta-band {
-    background: var(--slate);
-    padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-band::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-
-  .cta-band h2 {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    color: var(--white);
-    margin-bottom: 16px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-band p {
-    color: var(--text-on-dark);
-    font-size: 1.1rem;
-    margin-bottom: 36px;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-band .btn-primary {
-    padding: 16px 40px;
-    font-size: 0.9rem;
-  }
-
-  /* ===================== FOOTER ===================== */
-  footer {
-    background: var(--navy);
-    padding: 48px clamp(24px, 5vw, 80px) 32px;
-    border-top: 1px solid rgba(201, 168, 76, 0.1);
-  }
-
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 32px;
-  }
-
-  .footer-brand {
-    max-width: 320px;
-  }
-
-  .footer-brand .nav-logo {
-    display: inline-block;
-    margin-bottom: 16px;
-    font-size: 1.15rem;
-  }
-
-  .footer-brand p {
-    color: var(--text-light);
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
-
-  .footer-col h5 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .footer-col a {
-    display: block;
-    color: var(--text-on-dark);
-    text-decoration: none;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    transition: color 0.3s;
-  }
-
-  .footer-col a:hover { color: var(--white); }
-
-  .footer-contact-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-on-dark);
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-
-  .footer-contact-item svg {
-    width: 16px;
-    height: 16px;
-    stroke: var(--gold);
-    fill: none;
-    stroke-width: 1.5;
-    flex-shrink: 0;
-  }
-
-  .footer-contact-item a {
-    color: var(--text-on-dark);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .footer-contact-item a:hover { color: var(--white); }
-
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 36px auto 0;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .footer-bottom p {
-    color: var(--text-light);
-    font-size: 0.78rem;
-    letter-spacing: 0.02em;
-  }
 
-  .footer-social {
-    display: flex;
-    gap: 16px;
-  }
-
-  .footer-social a {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-  }
-
-  .footer-social a:hover {
-    border-color: var(--gold);
-    background: rgba(201, 168, 76, 0.08);
-  }
-
-  .footer-social svg {
-    width: 16px;
-    height: 16px;
-    fill: var(--text-on-dark);
-  }
-
-  /* ===================== ANIMATIONS ===================== */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ===================== RESPONSIVE ===================== */
-  @media (max-width: 1024px) {
-    .diff-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .nav-toggle { display: flex; }
-
-    .nav-links.open {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 72px;
-      left: 0;
-      right: 0;
-      background: var(--navy);
-      padding: 24px;
-      gap: 20px;
-      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
-    }
-
-    .hero-grid { grid-template-columns: 1fr; }
-    .hero-stats { max-width: 400px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .diff-grid { grid-template-columns: 1fr; }
-    .proof-cards { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-visual { order: -1; }
-  }
+/* ============================================================
+   BASE RESET + SHARED STRUCTURE
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  color: var(--text);
+  line-height: 1.65;
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.5s, color 0.5s;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+h1, h2, h3, h4 {
+  font-family: var(--ff-head);
+  font-weight: var(--fw-head);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--heading);
+  transition: color 0.5s;
+}
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 64px); }
+
+.eyebrow {
+  font-family: var(--ff-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  transition: color 0.5s;
+}
+
+.rule { width: 48px; height: 1px; background: var(--accent); display: block; transition: background 0.5s; }
+
+/* ============================================================
+   THEME A — EDITORIAL  (bone + ink + gold serif)
+   ============================================================ */
+[data-theme="editorial"] {
+  --bg: #FAF8F4;
+  --bg-alt: #F0EDE6;
+  --bg-inv: #0A0F14;
+  --bg-inv-soft: #161D26;
+  --heading: #0A0F14;
+  --text: #3D4A56;
+  --text-muted: #6B7A8A;
+  --accent: #C4A95A;
+  --accent-hover: #B0943E;
+  --border: rgba(10,15,20,0.08);
+  --border-inv: rgba(255,255,255,0.06);
+  --on-inv: #fff;
+  --on-inv-muted: rgba(255,255,255,0.55);
+  --ff-head: 'Instrument Serif', Georgia, serif;
+  --ff-body: 'Inter', -apple-system, sans-serif;
+  --fw-head: 400;
+  --radius: 4px;
+}
+
+/* grain overlay — editorial only */
+[data-theme="editorial"] body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9999; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   THEME B — MIDNIGHT  (charcoal + copper, all sans, brutalist)
+   ============================================================ */
+[data-theme="midnight"] {
+  --bg: #111114;
+  --bg-alt: #19191D;
+  --bg-inv: #111114;
+  --bg-inv-soft: #1E1E23;
+  --heading: #EDEDEC;
+  --text: #9B9BA0;
+  --text-muted: #6E6E76;
+  --accent: #D4875C;
+  --accent-hover: #C07548;
+  --border: rgba(255,255,255,0.07);
+  --border-inv: rgba(255,255,255,0.07);
+  --on-inv: #EDEDEC;
+  --on-inv-muted: rgba(255,255,255,0.45);
+  --ff-head: 'Inter', -apple-system, sans-serif;
+  --ff-body: 'Inter', -apple-system, sans-serif;
+  --fw-head: 700;
+  --radius: 0px;
+}
+
+[data-theme="midnight"] body::after { display: none; }
+
+/* ============================================================
+   THEME C — WARM MINIMAL  (cream + olive, inverted type)
+   ============================================================ */
+[data-theme="warm"] {
+  --bg: #FFFCF7;
+  --bg-alt: #F5F1EA;
+  --bg-inv: #2C3E2D;
+  --bg-inv-soft: #34493A;
+  --heading: #1E2B1E;
+  --text: #4A5A4A;
+  --text-muted: #7A8A7A;
+  --accent: #3D5A3E;
+  --accent-hover: #2E4A2F;
+  --border: rgba(30,43,30,0.08);
+  --border-inv: rgba(255,255,255,0.1);
+  --on-inv: #fff;
+  --on-inv-muted: rgba(255,255,255,0.6);
+  --ff-head: 'Inter', -apple-system, sans-serif;
+  --ff-body: 'Instrument Serif', Georgia, serif;
+  --fw-head: 600;
+  --radius: 12px;
+}
+
+[data-theme="warm"] body::after { display: none; }
+
+/* warm: softer body text */
+[data-theme="warm"] body { line-height: 1.75; font-size: 1.02rem; }
+[data-theme="warm"] .eyebrow { font-family: 'Inter', sans-serif; }
+[data-theme="warm"] .capability-grid li,
+[data-theme="warm"] .case-narrative p,
+[data-theme="warm"] .engine-body > p,
+[data-theme="warm"] .about-text p { font-size: 1rem; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 clamp(24px, 5vw, 64px);
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+nav.scrolled {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.nav-wordmark {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--heading); text-decoration: none;
+  transition: color 0.5s;
+}
+
+.nav-links {
+  display: flex; gap: 32px; list-style: none; align-items: center;
+}
+
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted); text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--heading); }
+
+.nav-links .cta-link {
+  padding: 8px 20px;
+  border: 1px solid var(--heading);
+  color: var(--heading);
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: all 0.3s;
+}
+
+.nav-links .cta-link:hover {
+  background: var(--heading);
+  color: var(--bg);
+}
+
+.nav-toggle {
+  display: none; background: none; border: none; cursor: pointer;
+  width: 28px; height: 20px; position: relative;
+}
+.nav-toggle span {
+  display: block; position: absolute; left: 0; width: 100%; height: 1.5px;
+  background: var(--heading); transition: all 0.3s;
+}
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.nav-toggle span:nth-child(3) { bottom: 0; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 clamp(24px, 5vw, 64px);
+  padding-bottom: clamp(60px, 10vh, 120px);
+}
+
+.hero-content { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+
+.hero h1 {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  max-width: 14ch;
+  margin-bottom: 40px;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.hero h1 em { font-style: italic; color: var(--accent); }
+
+.hero-bottom {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;
+}
+
+.hero-intro {
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--text-muted); max-width: 44ch; line-height: 1.7;
+}
+
+.hero-stats { display: flex; gap: clamp(24px, 4vw, 56px); flex-shrink: 0; }
+
+.hero-stat { text-align: right; }
+
+.hero-stat-val {
+  font-family: var(--ff-head); font-weight: var(--fw-head);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  color: var(--heading); display: block; line-height: 1; letter-spacing: -0.02em;
+}
+
+.hero-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text-muted); margin-top: 6px; display: block;
+}
+
+/* midnight hero: centered */
+[data-theme="midnight"] .hero { align-items: center; text-align: center; justify-content: center; }
+[data-theme="midnight"] .hero h1 { max-width: 18ch; margin-left: auto; margin-right: auto; }
+[data-theme="midnight"] .hero-bottom { flex-direction: column; align-items: center; }
+[data-theme="midnight"] .hero-intro { text-align: center; }
+[data-theme="midnight"] .hero-stats { justify-content: center; }
+[data-theme="midnight"] .hero-stat { text-align: center; }
+[data-theme="midnight"] .hero-eyebrow { justify-content: center; }
+
+/* warm hero: slightly softer */
+[data-theme="warm"] .hero h1 { letter-spacing: -0.015em; line-height: 1.06; }
+
+/* ============================================================
+   MARQUEE STRIP
+   ============================================================ */
+.strip {
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.5s;
+}
+
+.strip-track {
+  display: flex; gap: 48px; white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+
+.strip-item {
+  font-family: var(--ff-head); font-size: 1rem;
+  color: var(--text-muted);
+  display: flex; align-items: center; gap: 48px; flex-shrink: 0;
+  transition: color 0.5s;
+}
+
+.strip-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; transition: background 0.5s; }
+
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+[data-theme="midnight"] .strip-item { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.s-services { padding: clamp(80px, 12vw, 160px) 0; }
+
+.s-services-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 120px); align-items: end;
+  margin-bottom: clamp(60px, 8vw, 100px);
+}
+
+.s-services-header h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); }
+
+.s-services-header p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.75; max-width: 480px; }
+
+.engine-row {
+  display: grid; grid-template-columns: 0.4fr 1fr;
+  gap: clamp(32px, 5vw, 80px);
+  padding: clamp(40px, 5vw, 64px) 0;
+  border-top: 1px solid var(--border);
+  align-items: start;
+  transition: border-color 0.5s;
+}
+
+.engine-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--accent); padding-top: 4px;
+  transition: color 0.5s;
+}
+
+.engine-body h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 16px; }
+
+.engine-body > p {
+  color: var(--text-muted); font-size: 0.98rem; line-height: 1.75;
+  max-width: 560px; margin-bottom: 32px;
+}
+
+.capability-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px 32px; list-style: none;
+}
+
+.capability-grid li {
+  font-size: 0.88rem; color: var(--text);
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; gap: 12px;
+  transition: border-color 0.5s, color 0.5s;
+}
+
+.capability-grid li::before {
+  content: '\2192'; color: var(--accent); font-size: 0.8rem; flex-shrink: 0;
+  transition: color 0.5s;
+}
+
+/* warm: rounded capability items */
+[data-theme="warm"] .capability-grid li { border-bottom: none; background: var(--bg-alt); padding: 12px 16px; border-radius: 8px; }
+
+/* ============================================================
+   WHY PURSUIT
+   ============================================================ */
+.s-why {
+  background: var(--bg-inv);
+  padding: clamp(80px, 12vw, 160px) 0;
+  position: relative;
+  transition: background 0.5s;
+}
+
+.s-why::before {
+  content: ''; position: absolute; top: 0; right: 10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 5%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.s-why .eyebrow { margin-bottom: 24px; }
+
+.s-why h2 {
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  color: var(--on-inv);
+  max-width: 16ch; margin-bottom: clamp(60px, 8vw, 100px);
+}
+
+.why-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--border-inv);
+  border-radius: var(--radius); overflow: hidden;
+}
+
+.why-card {
+  background: var(--bg-inv-soft);
+  padding: clamp(32px, 4vw, 56px);
+  transition: background 0.4s;
+}
+
+.why-card:hover { background: color-mix(in srgb, var(--bg-inv-soft) 80%, var(--accent) 5%); }
+
+.why-card-num {
+  font-family: var(--ff-head); font-weight: var(--fw-head);
+  font-size: 3rem;
+  color: color-mix(in srgb, var(--accent) 15%, transparent);
+  line-height: 1; margin-bottom: 20px;
+}
+
+.why-card h4 { font-size: 1.25rem; color: var(--on-inv); margin-bottom: 12px; }
+
+.why-card p { color: var(--on-inv-muted); font-size: 0.9rem; line-height: 1.7; }
+
+/* warm: why cards get rounded feel */
+[data-theme="warm"] .why-grid { gap: 16px; background: transparent; }
+[data-theme="warm"] .why-card { border-radius: var(--radius); }
+
+/* ============================================================
+   RESULTS
+   ============================================================ */
+.s-results { padding: clamp(80px, 12vw, 160px) 0; }
+
+.s-results-header { margin-bottom: clamp(60px, 8vw, 100px); }
+
+.s-results-header h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); margin-bottom: 16px; }
+
+.s-results-header p { color: var(--text-muted); font-size: 1.05rem; max-width: 520px; }
+
+.case-studies {
+  display: flex; flex-direction: column; gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.5s, border-color 0.5s;
+}
+
+.case {
+  display: grid; grid-template-columns: 0.35fr 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  padding: clamp(32px, 5vw, 56px) 0;
+  background: var(--bg);
+  align-items: start;
+  transition: background 0.5s;
+}
+
+.case-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--accent); padding-top: 6px;
+  transition: color 0.5s;
+}
+
+.case-narrative h3 { font-size: clamp(1.4rem, 2vw, 1.8rem); margin-bottom: 14px; }
+
+.case-narrative p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.75; }
+
+.case-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-top: 6px; }
+
+.metric {
+  padding: 16px 20px;
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  transition: background 0.5s, border-radius 0.5s;
+}
+
+.metric-val {
+  font-family: var(--ff-head); font-weight: var(--fw-head);
+  font-size: 1.4rem; color: var(--heading);
+  display: block; line-height: 1.2; margin-bottom: 2px;
+  transition: color 0.5s;
+}
+
+.metric-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-muted);
+  transition: color 0.5s;
+}
+
+/* warm: case cards instead of rows */
+[data-theme="warm"] .case-studies { background: transparent; border: none; gap: 24px; }
+[data-theme="warm"] .case { background: var(--bg-alt); border-radius: var(--radius); padding: clamp(28px, 4vw, 48px); box-shadow: 0 2px 16px rgba(0,0,0,0.04); }
+
+/* midnight: bigger type emphasis in metrics */
+[data-theme="midnight"] .metric { background: var(--bg-alt); border: 1px solid var(--border); }
+[data-theme="midnight"] .metric-val { font-size: 1.6rem; }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.s-about { background: var(--bg-alt); padding: clamp(80px, 12vw, 160px) 0; transition: background 0.5s; }
+
+.about-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 8vw, 140px); align-items: center;
+}
+
+.about-quote-block {
+  background: var(--bg-inv); padding: clamp(36px, 5vw, 64px);
+  border-radius: var(--radius); position: relative;
+  transition: background 0.5s, border-radius 0.5s;
+}
+
+.about-quote-block::before {
+  content: '\201C';
+  font-family: 'Instrument Serif', serif;
+  font-size: 6rem; color: var(--accent); opacity: 0.2;
+  position: absolute; top: 16px; left: 28px; line-height: 1;
+}
+
+.about-quote-text {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  color: var(--on-inv); line-height: 1.5; margin-bottom: 24px;
+  position: relative;
+}
+
+.about-quote-attr {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.about-text .eyebrow { margin-bottom: 20px; }
+
+.about-text h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 24px; }
+
+.about-text p { color: var(--text-muted); font-size: 0.98rem; line-height: 1.75; margin-bottom: 16px; }
+
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+
+.about-tags span {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.76rem; font-weight: 500;
+  color: var(--text-muted); letter-spacing: 0.02em;
+  transition: border-color 0.5s, color 0.5s, border-radius 0.5s;
+}
+
+/* warm: pill tags */
+[data-theme="warm"] .about-tags span { border-radius: 999px; background: var(--bg); }
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.s-cta { padding: clamp(80px, 12vw, 140px) 0; text-align: center; }
+
+.s-cta h2 {
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  margin-bottom: 20px;
+  max-width: 16ch; margin-left: auto; margin-right: auto;
+  letter-spacing: -0.02em;
+}
+
+.s-cta p {
+  color: var(--text-muted); font-size: 1.05rem;
+  max-width: 460px; margin: 0 auto 40px; line-height: 1.7;
+}
+
+.btn {
+  display: inline-block; padding: 16px 44px;
+  background: var(--heading); color: var(--bg);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.btn:hover { background: var(--accent); color: var(--bg); transform: translateY(-2px); }
+
+[data-theme="warm"] .btn:hover { color: #fff; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--bg-inv); padding: 56px 0 32px;
+  transition: background 0.5s;
+}
+
+.footer-grid {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 40px;
+  padding-bottom: 40px; border-bottom: 1px solid var(--border-inv);
+}
+
+.footer-brand { max-width: 280px; }
+
+.footer-brand-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--on-inv); display: block; margin-bottom: 16px;
+}
+
+.footer-brand p { font-size: 0.85rem; color: var(--on-inv-muted); line-height: 1.65; }
+
+.footer-col h5 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--accent); font-weight: 600; margin-bottom: 16px;
+}
+
+.footer-col a, .footer-col span {
+  display: block; font-family: 'Inter', sans-serif;
+  font-size: 0.85rem; color: var(--on-inv-muted);
+  text-decoration: none; margin-bottom: 10px; transition: color 0.3s;
+}
+
+.footer-col a:hover { color: var(--on-inv); }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 24px; flex-wrap: wrap; gap: 12px;
+}
+
+.footer-bottom p { font-size: 0.72rem; color: var(--on-inv-muted); letter-spacing: 0.02em; opacity: 0.5; }
+
+.footer-social { display: flex; gap: 12px; }
+
+.footer-social a {
+  width: 32px; height: 32px;
+  border: 1px solid var(--border-inv); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+
+.footer-social a:hover { border-color: var(--accent); }
+
+.footer-social svg { width: 14px; height: 14px; fill: var(--on-inv-muted); }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+
+.reveal.vis { opacity: 1; transform: none; }
+
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.08s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.16s; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.24s; }
+
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
+.theme-switcher {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  display: flex; align-items: center; gap: 0;
+  background: var(--heading);
+  padding: 6px;
+  border-radius: 999px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  transition: background 0.5s;
+}
+
+.theme-btn {
+  width: 32px; height: 32px;
+  border: none; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+  position: relative;
+  background: transparent;
+}
+
+.theme-btn::after {
+  content: '';
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.theme-btn[data-t="editorial"]::after { background: #FAF8F4; border: 1.5px solid #C4A95A; }
+.theme-btn[data-t="midnight"]::after { background: #111114; border: 1.5px solid #D4875C; }
+.theme-btn[data-t="warm"]::after { background: #FFFCF7; border: 1.5px solid #3D5A3E; }
+
+.theme-btn.active::after { transform: scale(1.3); box-shadow: 0 0 0 2px rgba(255,255,255,0.4); }
+
+.theme-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.62rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--bg); opacity: 0.6;
+  padding: 0 10px 0 6px;
+  white-space: nowrap;
+  transition: color 0.5s;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .s-services-header { grid-template-columns: 1fr; }
+  .engine-row { grid-template-columns: 1fr; gap: 12px; }
+  .capability-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .case { grid-template-columns: 1fr; }
+  .about-layout { grid-template-columns: 1fr; }
+  .about-quote-block { order: -1; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; }
+  .hero-stat { text-align: left; }
+  [data-theme="midnight"] .hero-stat { text-align: center; }
+}
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: var(--bg); padding: 40px clamp(24px, 5vw, 64px);
+    gap: 24px; z-index: 99;
+  }
+  .nav-links.open a { font-size: 1.1rem; color: var(--heading); }
+  .case-metrics { grid-template-columns: 1fr; }
+  .theme-label { display: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
+<!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Pursuit<span>.</span></a>
+  <a href="#" class="nav-wordmark">Pursuit</a>
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
@@ -988,134 +737,125 @@
     <li><a href="#approach">Approach</a></li>
     <li><a href="#results">Results</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+    <li><a href="#contact" class="cta-link">Let's Talk</a></li>
   </ul>
 </nav>
 
-<!-- ========== HERO ========== -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-grid">
-    <div>
-      <div class="hero-eyebrow">Talent Acquisition &middot; Sales Hiring</div>
-      <h1>We build hiring engines for companies that are <em>done guessing.</em></h1>
-      <p class="hero-text">Pursuit Consulting partners with startups and growth-stage companies to deliver top sales talent — and build the internal TA infrastructure to keep winning long after we leave.</p>
-      <div class="hero-btns">
-        <a href="#contact" class="btn-primary">Schedule a Conversation</a>
-        <a href="#services" class="btn-outline">See How We Work</a>
-      </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">
+      <span class="rule"></span>
+      <span class="eyebrow">Talent Acquisition &amp; Sales Hiring</span>
     </div>
-    <div class="hero-stats">
-      <div class="stat-card">
-        <span class="number">15+</span>
-        <span class="label">Years in TA</span>
-      </div>
-      <div class="stat-card">
-        <span class="number">10</span>
-        <span class="label">Years in Sales</span>
-      </div>
-      <div class="stat-card">
-        <span class="number">30K+</span>
-        <span class="label">Candidate Database</span>
-      </div>
-      <div class="stat-card">
-        <span class="number">AI</span>
-        <span class="label">Powered Delivery</span>
+    <h1 class="reveal">We build hiring engines for companies that are <em>done guessing.</em></h1>
+    <div class="hero-bottom reveal">
+      <p class="hero-intro">Pursuit Consulting partners with startups and growth-stage companies to deliver top sales talent — and build the internal TA infrastructure to keep winning long after we leave.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-val">15+</span>
+          <span class="hero-stat-label">Years in TA</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">10</span>
+          <span class="hero-stat-label">Years in Sales</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">30K+</span>
+          <span class="hero-stat-label">Candidates</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== POSITIONING BAR ========== -->
-<div class="position-bar">
-  <p>Most recruiters fill roles. We build the systems that make great hiring repeatable — powered by AI, grounded in 15 years of talent acquisition expertise.</p>
+<!-- STRIP -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span class="strip-item">Retained Search <span class="strip-dot"></span></span>
+    <span class="strip-item">TA Infrastructure <span class="strip-dot"></span></span>
+    <span class="strip-item">Sales Hiring <span class="strip-dot"></span></span>
+    <span class="strip-item">AI-Powered Delivery <span class="strip-dot"></span></span>
+    <span class="strip-item">Employer Branding <span class="strip-dot"></span></span>
+    <span class="strip-item">Compensation Design <span class="strip-dot"></span></span>
+    <span class="strip-item">GTM Recruiting <span class="strip-dot"></span></span>
+    <span class="strip-item">Assessment Frameworks <span class="strip-dot"></span></span>
+    <span class="strip-item">Retained Search <span class="strip-dot"></span></span>
+    <span class="strip-item">TA Infrastructure <span class="strip-dot"></span></span>
+    <span class="strip-item">Sales Hiring <span class="strip-dot"></span></span>
+    <span class="strip-item">AI-Powered Delivery <span class="strip-dot"></span></span>
+    <span class="strip-item">Employer Branding <span class="strip-dot"></span></span>
+    <span class="strip-item">Compensation Design <span class="strip-dot"></span></span>
+    <span class="strip-item">GTM Recruiting <span class="strip-dot"></span></span>
+    <span class="strip-item">Assessment Frameworks <span class="strip-dot"></span></span>
+  </div>
 </div>
 
-<!-- ========== SERVICES ========== -->
-<section class="services" id="services">
-  <div class="services-header fade-in">
-    <div class="section-eyebrow">What We Do</div>
-    <h2>Two Ways to Work With Us</h2>
-    <p>Whether you need positions filled now or a talent acquisition function built for the long term, we meet you where you are.</p>
-  </div>
+<!-- SERVICES -->
+<section class="s-services" id="services">
+  <div class="container">
+    <div class="s-services-header">
+      <h2 class="reveal">Two ways to work with us.</h2>
+      <p class="reveal">Whether you need positions filled now or a talent acquisition function built for the long term, we meet you where you are.</p>
+    </div>
 
-  <div class="services-grid">
-    <!-- Engine 1 -->
-    <div class="service-card fade-in">
-      <div class="service-card-header">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
-        </div>
-        <div class="engine-label">Talent Acquisition</div>
+    <div class="engine-row reveal">
+      <div class="engine-label">01 &mdash; Talent Acquisition</div>
+      <div class="engine-body">
         <h3>Find &amp; Place Top Talent</h3>
         <p>Direct hire placements and retained searches for companies that need exceptional sales, go-to-market, and technical talent — fast, and without the overhead of a full TA team.</p>
-      </div>
-      <div class="service-card-body">
-        <ul class="service-list">
+        <ul class="capability-grid">
           <li>Retained and contingent search for sales, GTM, and technical roles</li>
           <li>AI-accelerated sourcing for faster speed-to-hire</li>
           <li>Deep candidate assessment — quantified, not gut-based</li>
           <li>Multi-hire campaigns and embedded recruiting support</li>
-          <li>Partner network for scalable fulfillment without quality loss</li>
+          <li>Partner network for scalable fulfillment</li>
+          <li>Dedicated client experience from intake to offer</li>
         </ul>
-      </div>
-      <div class="service-card-footer">
-        <a href="#contact" class="service-link">Start a Search <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
 
-    <!-- Engine 2 -->
-    <div class="service-card fade-in">
-      <div class="service-card-header">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <div class="engine-label">TA Consulting &amp; Infrastructure</div>
+    <div class="engine-row reveal">
+      <div class="engine-label">02 &mdash; TA Consulting</div>
+      <div class="engine-body">
         <h3>Build Your Hiring Engine</h3>
         <p>For companies that want to stop depending on agencies. We design and implement the recruiting infrastructure — process, systems, and strategy — so your team can hire on its own.</p>
-      </div>
-      <div class="service-card-body">
-        <ul class="service-list">
+        <ul class="capability-grid">
           <li>End-to-end TA process design and workflow implementation</li>
           <li>ATS selection, configuration, and deployment</li>
           <li>Employer brand development and recruitment marketing</li>
           <li>Compensation structure and benchmarking</li>
-          <li>AI-powered assessment tools and candidate evaluation frameworks</li>
+          <li>AI-powered assessment tools and evaluation frameworks</li>
+          <li>Recruiting team training and enablement</li>
         </ul>
-      </div>
-      <div class="service-card-footer">
-        <a href="#contact" class="service-link">Explore Consulting <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== DIFFERENTIATORS ========== -->
-<section class="differentiators" id="approach">
-  <div class="diff-inner">
-    <div class="diff-header fade-in">
-      <div class="section-eyebrow">Why Pursuit</div>
-      <h2>We're not another recruiting agency.</h2>
-      <p>We combine a decade of sales experience with deep TA expertise and an AI-driven delivery model. The result: faster placements, better hires, and systems that outlast any single engagement.</p>
-    </div>
-
-    <div class="diff-grid fade-in">
-      <div class="diff-card">
-        <div class="diff-number">01</div>
+<!-- WHY PURSUIT -->
+<section class="s-why" id="approach">
+  <div class="container">
+    <span class="eyebrow reveal">Why Pursuit</span>
+    <h2 class="reveal">We're not another recruiting agency.</h2>
+    <div class="why-grid reveal-stagger">
+      <div class="why-card reveal">
+        <div class="why-card-num">01</div>
         <h4>Sales DNA</h4>
         <p>10 years as a sales professional before recruiting. We don't just screen sales candidates — we understand what separates quota-crushers from resume-polishers.</p>
       </div>
-      <div class="diff-card">
-        <div class="diff-number">02</div>
+      <div class="why-card reveal">
+        <div class="why-card-num">02</div>
         <h4>AI-Powered Delivery</h4>
         <p>We use AI across every phase — sourcing, assessment, candidate presentation, and client reporting. Faster, more consistent, and more data-driven than traditional approaches.</p>
       </div>
-      <div class="diff-card">
-        <div class="diff-number">03</div>
+      <div class="why-card reveal">
+        <div class="why-card-num">03</div>
         <h4>Soft Skills, Quantified</h4>
         <p>Every sales leader hires on gut. We built a proprietary assessment framework that quantifies what "gut" actually looks like — so your hiring decisions are backed by data.</p>
       </div>
-      <div class="diff-card">
-        <div class="diff-number">04</div>
+      <div class="why-card reveal">
+        <div class="why-card-num">04</div>
         <h4>Infrastructure That Lasts</h4>
         <p>We don't create dependency. Our consulting engagements build the processes, systems, and playbooks your team needs to hire independently — long after we step away.</p>
       </div>
@@ -1123,179 +863,175 @@
   </div>
 </section>
 
-<!-- ========== PROOF ========== -->
-<section class="proof" id="results">
-  <div class="proof-inner">
-    <div class="proof-header fade-in">
-      <div class="section-eyebrow">Results</div>
-      <h2>Proven With Companies That Matter</h2>
-      <p>From 800-person organizations to high-growth startups — we deliver results at every stage.</p>
+<!-- RESULTS -->
+<section class="s-results" id="results">
+  <div class="container">
+    <div class="s-results-header">
+      <span class="eyebrow reveal">Results</span>
+      <h2 class="reveal">Proven with companies that matter.</h2>
+      <p class="reveal">From 800-person organizations to high-growth startups — we deliver results at every stage.</p>
     </div>
 
-    <div class="proof-cards">
-      <div class="proof-card fade-in">
-        <span class="proof-tag">TA Infrastructure</span>
-        <h3>National Beverage Brand</h3>
-        <p>An 800-employee company had never had an internal recruiter. We built everything from scratch — process workflows, applicant tracking, compensation structures, and employer branding — transforming how they attract and hire talent.</p>
-        <div class="proof-results">
-          <div class="proof-result">
-            <span class="val">800+</span>
-            <span class="desc">Employees</span>
-          </div>
-          <div class="proof-result">
-            <span class="val">Zero → One</span>
-            <span class="desc">TA Function Built</span>
-          </div>
-          <div class="proof-result">
-            <span class="val">Full Stack</span>
-            <span class="desc">ATS, Process, Brand</span>
-          </div>
-          <div class="proof-result">
-            <span class="val">Ongoing</span>
-            <span class="desc">Strategic Partnership</span>
-          </div>
+    <div class="case-studies">
+      <div class="case reveal">
+        <div class="case-tag">TA Infrastructure</div>
+        <div class="case-narrative">
+          <h3>National Beverage Brand</h3>
+          <p>An 800-employee company had never had an internal recruiter. We built everything from scratch — process workflows, applicant tracking, compensation structures, and employer branding — transforming how they attract and hire talent.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">800+</span><span class="metric-label">Employees</span></div>
+          <div class="metric"><span class="metric-val">Zero &rarr; One</span><span class="metric-label">TA Function Built</span></div>
+          <div class="metric"><span class="metric-val">Full Stack</span><span class="metric-label">ATS, Process, Brand</span></div>
+          <div class="metric"><span class="metric-val">Ongoing</span><span class="metric-label">Strategic Partnership</span></div>
         </div>
       </div>
 
-      <div class="proof-card fade-in">
-        <span class="proof-tag">Retained Search</span>
-        <h3>Fintech Startup</h3>
-        <p>A venture-backed fintech platform needed senior leadership across development, go-to-market, and engineering. Through retained search, we placed critical roles that set the foundation for their next stage of growth.</p>
-        <div class="proof-results">
-          <div class="proof-result">
-            <span class="val">3</span>
-            <span class="desc">Retained Searches</span>
-          </div>
-          <div class="proof-result">
-            <span class="val">Executive</span>
-            <span class="desc">Caliber Talent</span>
-          </div>
-          <div class="proof-result">
-            <span class="val">2 of 3</span>
-            <span class="desc">Placed to Date</span>
-          </div>
-          <div class="proof-result">
-            <span class="val">Senior</span>
-            <span class="desc">Leadership Roles</span>
-          </div>
+      <div class="case reveal">
+        <div class="case-tag">Retained Search</div>
+        <div class="case-narrative">
+          <h3>Fintech Startup</h3>
+          <p>A venture-backed fintech platform needed senior leadership across development, go-to-market, and engineering. Through retained search, we placed critical roles that set the foundation for their next stage of growth.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">3</span><span class="metric-label">Retained Searches</span></div>
+          <div class="metric"><span class="metric-val">Executive</span><span class="metric-label">Caliber Talent</span></div>
+          <div class="metric"><span class="metric-val">2 of 3</span><span class="metric-label">Placed to Date</span></div>
+          <div class="metric"><span class="metric-val">Senior</span><span class="metric-label">Leadership Roles</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== ABOUT ========== -->
-<section class="about" id="about">
-  <div class="about-grid">
-    <div class="about-visual fade-in">
-      <div class="about-visual-block">
-        <p class="about-quote">I spent 10 years as a salesperson before I ever recruited one. That's why the people I place don't just interview well — they perform.</p>
-        <p class="about-attrib">Jake &mdash; Founder, Pursuit Consulting</p>
+<!-- ABOUT -->
+<section class="s-about" id="about">
+  <div class="container">
+    <div class="about-layout">
+      <div class="about-quote-block reveal">
+        <p class="about-quote-text">I spent 10 years as a salesperson before I ever recruited one. That's why the people I place don't just interview well — they perform.</p>
+        <p class="about-quote-attr">Jake &mdash; Founder, Pursuit Consulting</p>
       </div>
-    </div>
-    <div class="about-content fade-in">
-      <div class="section-eyebrow">About</div>
-      <h2>Built by someone who's been on both sides of the table.</h2>
-      <p>Jake spent a decade carrying a quota before transitioning to talent acquisition. He's led recruiting for national organizations, built TA functions from the ground up, and has placed hundreds of sales, go-to-market, and technical professionals.</p>
-      <p>Today, Pursuit Consulting sits at the intersection of deep sales expertise, proven recruiting methodology, and AI-driven delivery — helping companies hire better, faster, and more sustainably.</p>
-      <div class="about-tags">
-        <span class="about-tag">Sales &amp; GTM Hiring</span>
-        <span class="about-tag">TA Infrastructure</span>
-        <span class="about-tag">AI-Driven Delivery</span>
-        <span class="about-tag">Startup &amp; Growth Stage</span>
-        <span class="about-tag">Retained Search</span>
-        <span class="about-tag">Employer Branding</span>
+      <div class="about-text reveal">
+        <span class="eyebrow">About</span>
+        <h2>Built by someone who's been on both sides of the table.</h2>
+        <p>Jake spent a decade carrying a quota before transitioning to talent acquisition. He's led recruiting for national organizations, built TA functions from the ground up, and has placed hundreds of sales, go-to-market, and technical professionals.</p>
+        <p>Today, Pursuit Consulting sits at the intersection of deep sales expertise, proven recruiting methodology, and AI-driven delivery — helping companies hire better, faster, and more sustainably.</p>
+        <div class="about-tags">
+          <span>Sales &amp; GTM Hiring</span>
+          <span>TA Infrastructure</span>
+          <span>AI-Driven Delivery</span>
+          <span>Startup &amp; Growth Stage</span>
+          <span>Retained Search</span>
+          <span>Employer Branding</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== CTA ========== -->
-<section class="cta-band" id="contact">
-  <h2>Ready to stop guessing and start building?</h2>
-  <p>Whether you need one role filled or an entire TA function designed — let's figure out the right approach together.</p>
-  <a href="mailto:jake@pursuit-consulting.com" class="btn-primary">Schedule a Conversation</a>
+<!-- CTA -->
+<section class="s-cta" id="contact">
+  <div class="container">
+    <h2 class="reveal">Ready to stop guessing?</h2>
+    <p class="reveal">Whether you need one role filled or an entire TA function designed — let's figure out the right approach together.</p>
+    <div class="reveal">
+      <a href="mailto:jake@pursuit-consulting.com" class="btn">Schedule a Conversation</a>
+    </div>
+  </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="#" class="nav-logo">Pursuit<span>.</span></a>
-      <p>Modern talent acquisition and TA infrastructure consulting for startups and growth-stage companies. Austin-based, working nationwide.</p>
-    </div>
-
-    <div class="footer-col">
-      <h5>Services</h5>
-      <a href="#services">Talent Acquisition</a>
-      <a href="#services">TA Consulting</a>
-      <a href="#services">Retained Search</a>
-      <a href="#services">Employer Branding</a>
-    </div>
-
-    <div class="footer-col">
-      <h5>Company</h5>
-      <a href="#about">About</a>
-      <a href="#results">Results</a>
-      <a href="#approach">Approach</a>
-    </div>
-
-    <div class="footer-col">
-      <h5>Get In Touch</h5>
-      <div class="footer-contact-item">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-brand-name">Pursuit</span>
+        <p>Modern talent acquisition and TA infrastructure consulting for startups and growth-stage companies. Austin-based, working nationwide.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Talent Acquisition</a>
+        <a href="#services">TA Consulting</a>
+        <a href="#services">Retained Search</a>
+        <a href="#services">Employer Branding</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#about">About</a>
+        <a href="#results">Results</a>
+        <a href="#approach">Approach</a>
+      </div>
+      <div class="footer-col">
+        <h5>Get In Touch</h5>
         <a href="mailto:jake@pursuit-consulting.com">jake@pursuit-consulting.com</a>
-      </div>
-      <div class="footer-contact-item">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <a href="tel:5126809696">(512) 680-9696</a>
-      </div>
-      <div class="footer-contact-item">
-        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span>Austin, Texas</span>
       </div>
     </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>&copy; 2026 Pursuit Consulting Services LLC. All rights reserved.</p>
-    <div class="footer-social">
-      <a href="https://www.linkedin.com/in/jake" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
-      </a>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pursuit Consulting Services LLC. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/jake" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </footer>
 
+<!-- THEME TOGGLE -->
+<div class="theme-switcher">
+  <span class="theme-label">Theme</span>
+  <button class="theme-btn active" data-t="editorial" aria-label="Editorial theme"></button>
+  <button class="theme-btn" data-t="midnight" aria-label="Midnight theme"></button>
+  <button class="theme-btn" data-t="warm" aria-label="Warm Minimal theme"></button>
+</div>
+
 <script>
-  // Nav scroll effect
+  // Theme switcher
+  const root = document.documentElement;
+  const btns = document.querySelectorAll('.theme-btn');
+
+  function setTheme(t) {
+    root.setAttribute('data-theme', t);
+    btns.forEach(b => b.classList.toggle('active', b.dataset.t === t));
+    localStorage.setItem('pursuit-theme', t);
+    // Re-trigger reveals for elements already in view
+    document.querySelectorAll('.reveal:not(.vis)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('vis');
+    });
+  }
+
+  btns.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.t)));
+
+  // Restore saved theme
+  const saved = localStorage.getItem('pursuit-theme');
+  if (saved) setTheme(saved);
+
+  // Nav scroll
   window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
-  });
+  }, { passive: true });
 
-  // Fade-in on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  // Reveal on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // Smooth scroll for anchor links
+  // Smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        document.querySelector('.nav-links').classList.remove('open');
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) {
+        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelector('.nav-links')?.classList.remove('open');
       }
     });
   });
 </script>
-
 </body>
 </html>
