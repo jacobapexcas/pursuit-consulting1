@@ -107,6 +107,72 @@ h1,h2,h3,h4{
 [data-theme="warm"] .eyebrow{font-family:'Inter',sans-serif}
 
 /* ============================================================
+   THEME D — NETWORK  (deep blue-black + gold nodes canvas)
+   ============================================================ */
+[data-theme="network"]{
+  --bg:#080B12;--bg-alt:#0F1420;
+  --bg-inv:#080B12;--bg-inv-soft:#121824;
+  --heading:#E8E6E0;--text:#8A8E96;--text-muted:#5C6270;
+  --accent:#C9A84C;--accent-hover:#B8963A;
+  --border:rgba(255,255,255,.05);--border-inv:rgba(255,255,255,.05);
+  --on-inv:#E8E6E0;--on-inv-muted:rgba(255,255,255,.4);
+  --ff-head:'Inter',-apple-system,sans-serif;
+  --ff-body:'Inter',-apple-system,sans-serif;
+  --fw-head:700;--radius:2px;
+}
+[data-theme="network"] body::after{display:none}
+
+/* canvas backdrop */
+#net{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;display:none}
+[data-theme="network"] #net{display:block}
+
+/* all content above canvas */
+[data-theme="network"] nav,
+[data-theme="network"] .hero,
+[data-theme="network"] .strip,
+[data-theme="network"] .s-services,
+[data-theme="network"] .s-why,
+[data-theme="network"] .s-results,
+[data-theme="network"] .s-about,
+[data-theme="network"] .s-cta,
+[data-theme="network"] footer,
+[data-theme="network"] .theme-switcher{position:relative;z-index:1}
+
+/* hero: transparent so canvas shows */
+[data-theme="network"] .hero{background:transparent}
+
+/* sections with semi-transparent bg so nodes peek through edges */
+[data-theme="network"] .s-services{background:rgba(8,11,18,.88)}
+[data-theme="network"] .s-results{background:rgba(8,11,18,.88)}
+[data-theme="network"] .s-about{background:rgba(15,20,32,.92)}
+
+/* strip: semi-transparent */
+[data-theme="network"] .strip{background:rgba(8,11,18,.6);border-color:rgba(201,168,76,.1)}
+
+/* CTA: transparent so canvas shows */
+[data-theme="network"] .s-cta{background:transparent}
+
+/* nav on scroll */
+[data-theme="network"] nav.scrolled{background:rgba(8,11,18,.95);box-shadow:0 1px 0 rgba(201,168,76,.06)}
+
+/* why section: solid dark */
+[data-theme="network"] .s-why{background:#080B12}
+
+/* case studies */
+[data-theme="network"] .case-studies{background:transparent;border-color:rgba(201,168,76,.08)}
+[data-theme="network"] .case{background:transparent}
+
+/* metrics */
+[data-theme="network"] .metric{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1)}
+
+/* button */
+[data-theme="network"] .btn{background:var(--accent);color:#080B12;border:none}
+[data-theme="network"] .btn:hover{background:#E4C76B;transform:translateY(-2px)}
+
+/* footer */
+[data-theme="network"] footer{background:#060810}
+
+/* ============================================================
    NAV — shared base
    ============================================================ */
 nav{
@@ -596,6 +662,7 @@ footer{background:var(--bg-inv);padding:56px 0 32px;transition:background .6s}
 .theme-btn[data-t="editorial"]::after{background:#FAF8F4;border:1.5px solid #C4A95A}
 .theme-btn[data-t="midnight"]::after{background:#0E0E11;border:1.5px solid #D4875C}
 .theme-btn[data-t="warm"]::after{background:#FFFCF7;border:1.5px solid #3D5A3E}
+.theme-btn[data-t="network"]::after{background:#080B12;border:1.5px solid #C9A84C}
 .theme-btn.active::after{transform:scale(1.3);box-shadow:0 0 0 2px rgba(255,255,255,.4)}
 
 .theme-label{
@@ -641,6 +708,8 @@ footer{background:var(--bg-inv);padding:56px 0 32px;transition:background .6s}
 </style>
 </head>
 <body>
+
+<canvas id="net"></canvas>
 
 <!-- NAV -->
 <nav id="nav">
@@ -902,6 +971,7 @@ footer{background:var(--bg-inv);padding:56px 0 32px;transition:background .6s}
   <button class="theme-btn active" data-t="editorial" aria-label="Editorial theme"></button>
   <button class="theme-btn" data-t="midnight" aria-label="Midnight theme"></button>
   <button class="theme-btn" data-t="warm" aria-label="Warm Minimal theme"></button>
+  <button class="theme-btn" data-t="network" aria-label="Network theme"></button>
 </div>
 
 <script>
@@ -934,6 +1004,98 @@ footer{background:var(--bg-inv);padding:56px 0 32px;transition:background .6s}
       if(t){t.scrollIntoView({behavior:'smooth',block:'start'});document.querySelector('.nav-links')?.classList.remove('open')}
     });
   });
+</script>
+
+<script>
+  // Network canvas animation
+  (function(){
+    const c=document.getElementById('net'),ctx=c.getContext('2d');
+    let w,h,particles=[],raf=null,running=false;
+    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      w=c.width=window.innerWidth;
+      h=c.height=window.innerHeight;
+    }
+
+    function init(){
+      resize();
+      const count=window.innerWidth<640?35:window.innerWidth<1024?55:80;
+      particles=[];
+      for(let i=0;i<count;i++){
+        particles.push({
+          x:Math.random()*w, y:Math.random()*h,
+          vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
+          r:Math.random()*1.5+1.2
+        });
+      }
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      // draw connections
+      for(let i=0;i<particles.length;i++){
+        for(let j=i+1;j<particles.length;j++){
+          const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+          const dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<150){
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x,particles[i].y);
+            ctx.lineTo(particles[j].x,particles[j].y);
+            ctx.strokeStyle='rgba(201,168,76,'+(0.08*(1-dist/150))+')';
+            ctx.lineWidth=.5;
+            ctx.stroke();
+          }
+        }
+      }
+      // draw particles
+      for(const p of particles){
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(201,168,76,0.45)';
+        ctx.fill();
+      }
+    }
+
+    function update(){
+      for(const p of particles){
+        if(!reducedMotion){
+          p.x+=p.vx;p.y+=p.vy;
+          if(p.x<0||p.x>w)p.vx*=-1;
+          if(p.y<0||p.y>h)p.vy*=-1;
+        }
+      }
+    }
+
+    function loop(){
+      if(!running)return;
+      update();draw();
+      raf=requestAnimationFrame(loop);
+    }
+
+    function start(){
+      if(running)return;
+      running=true;init();loop();
+    }
+
+    function stop(){
+      running=false;
+      if(raf){cancelAnimationFrame(raf);raf=null}
+      ctx.clearRect(0,0,w,h);
+    }
+
+    // watch theme changes
+    const obs2=new MutationObserver(()=>{
+      if(document.documentElement.getAttribute('data-theme')==='network')start();
+      else stop();
+    });
+    obs2.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+    // initial check
+    if(document.documentElement.getAttribute('data-theme')==='network')start();
+
+    window.addEventListener('resize',()=>{if(running){resize();init()}},{passive:true});
+  })();
 </script>
 </body>
 </html>
