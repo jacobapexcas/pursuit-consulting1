@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pursuit Talent Advisory | Hire Above Your Weight.</title>
+<meta name="description" content="Pursuit Talent Advisory blends the strategic advantage of an internal TA team with the speed, flexibility, and reach of an experienced staffing partner. 15 years on both sides of the talent problem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+a{color:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+
+/* LADDER THEME TOKENS */
+:root{
+  --bg:#000000;--bg-alt:#0A0A0A;
+  --bg-inv:#000000;--bg-inv-soft:#111111;
+  --heading:#FFFFFF;--text:#9CA3AF;--text-muted:#6B7280;
+  --accent:#7C3AED;--accent-hover:#6D28D9;
+  --border:rgba(255,255,255,.06);--border-inv:rgba(255,255,255,.06);
+  --on-inv:#FFFFFF;--on-inv-muted:rgba(255,255,255,.45);
+  --ff-head:'Inter',-apple-system,sans-serif;
+  --ff-body:'Inter',-apple-system,sans-serif;
+  --fw-head:700;--radius:8px;
+}
+
+body{
+  font-family:var(--ff-body);
+  color:var(--text);
+  line-height:1.65;
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+::selection{background:var(--accent);color:#fff}
+
+h1,h2,h3,h4{
+  font-family:var(--ff-head);
+  font-weight:var(--fw-head);
+  line-height:1.08;
+  letter-spacing:-.015em;
+  color:var(--heading);
+}
+
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(24px,5vw,64px)}
+
+.eyebrow{
+  font-family:'Inter',sans-serif;
+  font-size:.7rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.18em;
+  color:var(--accent);
+}
+
+.rule{width:48px;height:1px;background:var(--accent);display:block}
+
+#cvs-ladder{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+.hero,.s-about,.s-services,.s-ondemand,.s-market,.s-results,.s-reviews,.s-cta,footer{position:relative;z-index:1}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 clamp(24px,5vw,64px);height:80px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(0,0,0,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  transition:all .5s cubic-bezier(.16,1,.3,1);
+}
+nav.scrolled{background:rgba(0,0,0,.98);box-shadow:0 2px 16px rgba(124,58,237,.12)}
+
+.nav-logo-link{display:flex;align-items:center;text-decoration:none}
+.nav-logo{height:60px;width:auto;display:block}
+.nav-logo-fallback::after{
+  content:'PURSUIT';
+  font-family:'Inter',sans-serif;font-size:.92rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--heading);
+}
+
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;
+  letter-spacing:.04em;color:var(--text-muted);
+  text-decoration:none;transition:color .3s;
+}
+.nav-links a:hover{color:var(--heading)}
+
+.nav-links .cta-link{
+  padding:8px 20px;background:var(--accent);color:#fff;
+  font-weight:700;border-radius:var(--radius);
+  transition:all .3s;border:none;
+}
+.nav-links .cta-link:hover{background:var(--accent-hover);color:#fff}
+
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative}
+.nav-toggle span{display:block;position:absolute;left:0;width:100%;height:1.5px;background:var(--heading);transition:all .3s}
+.nav-toggle span:nth-child(1){top:0}
+.nav-toggle span:nth-child(2){top:50%;transform:translateY(-50%)}
+.nav-toggle span:nth-child(3){bottom:0}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:clamp(80px,14vh,140px) 0;
+}
+.hero-content{max-width:1200px;margin:0 auto;width:100%;display:flex;flex-direction:column;align-items:center;padding:0 clamp(24px,5vw,64px)}
+.hero-eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.hero h1{
+  max-width:20ch;margin:0 auto 28px;
+  font-size:clamp(2.8rem,7vw,6rem);
+  letter-spacing:-.04em;line-height:1.02;
+}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:400}
+.hero-bottom{display:flex;flex-direction:column;align-items:center;gap:36px}
+.hero-intro{text-align:center;max-width:64ch;font-size:1.15rem;color:#D0D5DD;line-height:1.7}
+.hero-stats{display:flex;justify-content:center;gap:clamp(32px,6vw,72px);margin-top:24px;flex-wrap:wrap}
+.hero-stat{text-align:center;min-width:140px}
+.hero-stat-val{
+  font-family:var(--ff-head);font-weight:700;
+  font-size:clamp(2rem,3.2vw,2.8rem);
+  color:var(--accent);display:block;line-height:1.05;letter-spacing:-.02em;
+}
+.hero-stat-label{
+  font-family:'Inter',sans-serif;font-size:.65rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:rgba(124,58,237,.7);margin-top:8px;display:block;
+}
+
+/* SECTION HEADER */
+.s-head{text-align:center;max-width:780px;margin:0 auto clamp(36px,5vw,56px)}
+.s-head .eyebrow{display:block;margin-bottom:18px}
+.s-head h2{font-size:clamp(2.5rem,5.5vw,4.5rem);margin-bottom:16px;letter-spacing:-.025em}
+.s-head p{color:#C8CDD5;font-size:1.05rem;line-height:1.7;max-width:620px;margin:0 auto}
+.s-head-tagline{
+  font-family:var(--ff-head);font-weight:700;
+  font-size:clamp(1.4rem,2.6vw,2.1rem);
+  color:var(--accent);letter-spacing:-.015em;
+  margin-bottom:14px;
+}
+
+/* ABOUT */
+.s-about{background:rgba(0,0,0,.88);padding:clamp(48px,6vw,80px) 0}
+.about-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,8vw,100px);align-items:center;
+}
+.about-quote-block{
+  padding:clamp(36px,5vw,56px);
+  border-radius:var(--radius);
+  border:1px solid rgba(124,58,237,.15);
+  background:rgba(124,58,237,.03);
+  position:relative;
+}
+.about-quote-block::before{
+  content:'\201C';
+  font-size:6rem;color:var(--accent);opacity:.18;
+  position:absolute;top:16px;left:28px;line-height:1;
+}
+.about-quote-text{
+  font-size:clamp(1.3rem,1.9vw,1.55rem);
+  color:#E0E0E0;line-height:1.55;margin-bottom:24px;position:relative;
+}
+.about-quote-attr{
+  font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--accent);
+}
+.about-text .eyebrow{display:block;margin-bottom:20px}
+.about-text h2{font-size:clamp(2.3rem,3.6vw,3rem);margin-bottom:24px;letter-spacing:-.02em}
+.about-text p{color:#B0B7C3;font-size:1rem;line-height:1.75;margin-bottom:16px}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.about-tags span{
+  padding:6px 16px;
+  background:rgba(124,58,237,.06);
+  border:1px solid rgba(124,58,237,.1);
+  border-radius:6px;
+  font-family:'Inter',sans-serif;
+  font-size:.76rem;font-weight:500;color:#B0B7C3;
+}
+
+/* ON DEMAND, ON POINT — 2-card layout */
+.s-ondemand{background:rgba(0,0,0,.85);padding:clamp(48px,6vw,80px) 0}
+.ondemand-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:20px;max-width:1000px;margin:0 auto;
+}
+.ondemand-card{
+  background:rgba(124,58,237,.04);
+  border:1px solid rgba(124,58,237,.15);
+  border-radius:12px;
+  padding:clamp(28px,3.5vw,40px);
+  transition:all .3s;
+}
+.ondemand-card:hover{
+  background:rgba(124,58,237,.08);
+  border-color:rgba(124,58,237,.4);
+  transform:translateY(-2px);
+}
+.ondemand-card-headline{
+  color:var(--accent);
+  font-family:var(--ff-head);font-weight:700;
+  font-size:clamp(1.5rem,2.6vw,2rem);
+  letter-spacing:-.015em;line-height:1.2;
+  margin-bottom:14px;
+  display:block;
+}
+.ondemand-card-sub{
+  color:#C0C5D0;font-size:1rem;line-height:1.7;
+}
+
+/* OUR SERVICES — 4 cards in 2x2 */
+.s-services{background:rgba(0,0,0,.9);padding:clamp(48px,6vw,80px) 0}
+.services-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.service-card{
+  background:#0A0A0A;
+  padding:clamp(28px,4vw,40px);
+  border-radius:var(--radius);
+  border-top:3px solid var(--accent);
+  transition:all .4s;
+  display:flex;flex-direction:column;
+}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(124,58,237,.12)}
+.service-card-num{
+  color:var(--accent);font-weight:700;font-size:.7rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.service-card h3{
+  font-size:clamp(1.4rem,2.2vw,1.8rem);
+  margin-bottom:14px;line-height:1.15;
+}
+.service-card-desc{
+  color:#C8CDD5;font-size:.98rem;line-height:1.7;
+  margin-bottom:22px;flex-grow:1;
+}
+.service-card ul{
+  list-style:none;padding:0;border-top:1px solid rgba(255,255,255,.06);padding-top:18px;
+}
+.service-card li{
+  padding:7px 0;color:#B0B7C3;font-size:.88rem;
+  display:flex;align-items:baseline;gap:10px;line-height:1.5;
+}
+.service-card li::before{
+  content:'\25B8';color:var(--accent);font-size:.62rem;flex-shrink:0;
+}
+
+/* MARKET KNOWLEDGE */
+.s-market{background:rgba(0,0,0,.92);padding:clamp(48px,6vw,80px) 0}
+.market-statement{
+  max-width:900px;margin:0 auto;
+  text-align:center;
+  padding:clamp(28px,4vw,48px);
+  background:linear-gradient(135deg,rgba(124,58,237,.06),rgba(124,58,237,.02));
+  border:1px solid rgba(124,58,237,.18);
+  border-radius:14px;
+}
+.market-points{
+  display:flex;justify-content:center;gap:clamp(20px,4vw,48px);
+  margin-top:clamp(24px,3vw,32px);flex-wrap:wrap;
+}
+.market-point{
+  color:var(--accent);
+  font-family:var(--ff-head);font-weight:700;
+  font-size:clamp(1rem,1.6vw,1.25rem);
+  letter-spacing:-.01em;
+}
+
+/* RECENT ENGAGEMENTS */
+.s-results{background:rgba(0,0,0,.9);padding:clamp(48px,6vw,80px) 0}
+.case-studies{display:flex;flex-direction:column}
+.case{
+  display:grid;grid-template-columns:1fr;
+  gap:32px;padding:clamp(48px,6vw,80px) 0;
+  border-bottom:1px solid rgba(124,58,237,.12);
+}
+.case:first-child{padding-top:0}
+.case:last-child{border-bottom:none}
+.case-tag{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.15em;
+  color:var(--accent);
+}
+.case-narrative h3{font-size:clamp(2rem,3vw,2.6rem);margin-bottom:16px}
+.case-narrative p{color:#B0B7C3;font-size:1rem;line-height:1.75;max-width:62ch}
+
+.case-metrics{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;padding-top:8px;
+}
+.metric{
+  padding:24px 16px;
+  background:rgba(124,58,237,.04);
+  border-radius:var(--radius);
+  border:1px solid rgba(124,58,237,.08);
+  text-align:center;
+  transition:all .3s;
+}
+.metric:hover{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.2)}
+.metric-val{
+  font-family:var(--ff-head);font-weight:700;
+  font-size:clamp(1.6rem,2.6vw,2.3rem);
+  color:var(--accent);
+  display:block;line-height:1.2;margin-bottom:4px;
+}
+.metric-label{
+  font-family:'Inter',sans-serif;font-size:.66rem;
+  text-transform:uppercase;letter-spacing:.08em;
+  color:#B0B7C3;
+}
+
+/* REVIEWS */
+.s-reviews{background:rgba(0,0,0,.85);padding:clamp(48px,6vw,80px) 0}
+.s-reviews .eyebrow{display:block;text-align:center;margin-bottom:36px}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.review-card{
+  background:#0A0A0A;
+  border:1px solid rgba(255,255,255,.04);
+  border-radius:var(--radius);
+  padding:32px 24px 24px;
+  text-align:center;
+  transition:all .3s;
+}
+.review-card:hover{
+  border-color:var(--accent);
+  box-shadow:0 16px 48px rgba(124,58,237,.12);
+  transform:translateY(-4px);
+}
+.review-avatar{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-head);font-weight:700;font-size:1.2rem;
+  background:var(--accent);color:#fff;
+}
+.review-stars{color:#E8B730;font-size:1rem;margin-bottom:10px;letter-spacing:2px}
+.review-headline{
+  font-family:var(--ff-head);font-weight:700;
+  font-size:1.2rem;color:var(--heading);margin-bottom:10px;
+}
+.review-body{
+  color:#B0B7C3;font-size:.95rem;line-height:1.65;
+  min-height:3.3em;transition:all .3s;
+}
+.review-preview{display:block}
+.review-full{display:none}
+.review-card:hover .review-preview{display:none}
+.review-card:hover .review-full{display:block}
+.review-attr{margin-top:16px;font-size:.8rem;color:#B0B7C3;font-style:italic}
+
+/* CTA */
+.s-cta{padding:clamp(48px,6vw,80px) 0;text-align:center}
+.s-cta h2{
+  font-size:clamp(2.8rem,5.5vw,4.8rem);margin-bottom:20px;
+  max-width:18ch;margin-left:auto;margin-right:auto;letter-spacing:-.025em;
+}
+.s-cta p{color:#C8CDD5;font-size:1.1rem;max-width:540px;margin:0 auto 36px;line-height:1.7}
+
+.btn{
+  display:inline-block;padding:18px 40px;
+  background:var(--accent);color:#fff;text-decoration:none;
+  font-family:'Inter',sans-serif;font-size:1rem;font-weight:700;
+  letter-spacing:.06em;
+  border-radius:var(--radius);border:none;
+  transition:all .4s cubic-bezier(.16,1,.3,1);
+}
+.btn:hover{background:var(--accent-hover);color:#fff;transform:translateY(-3px);box-shadow:0 8px 40px rgba(124,58,237,.3)}
+
+/* FOOTER */
+footer{background:#000;padding:56px 0 32px}
+.footer-grid{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  flex-wrap:wrap;gap:40px;padding-bottom:40px;
+  border-bottom:1px solid var(--border-inv);
+}
+.footer-brand{max-width:280px}
+.footer-brand-name{
+  font-family:'Inter',sans-serif;font-size:.92rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--on-inv);display:block;margin-bottom:16px;
+}
+.footer-brand p{font-size:.85rem;color:var(--on-inv-muted);line-height:1.65}
+
+.footer-col h5{
+  font-family:'Inter',sans-serif;font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.15em;color:var(--accent);font-weight:600;margin-bottom:16px;
+}
+.footer-col a,.footer-col span{
+  display:block;font-family:'Inter',sans-serif;font-size:.85rem;
+  color:var(--on-inv-muted);text-decoration:none;margin-bottom:10px;transition:color .3s;
+}
+.footer-col a:hover{color:var(--on-inv)}
+
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:24px;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{font-size:.72rem;color:var(--on-inv-muted);letter-spacing:.02em;opacity:.5}
+
+.footer-social{display:flex;gap:12px}
+.footer-social a{
+  width:32px;height:32px;border:1px solid var(--border-inv);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  transition:all .3s;
+}
+.footer-social a:hover{border-color:var(--accent)}
+.footer-social svg{width:14px;height:14px;fill:var(--on-inv-muted)}
+
+/* PASSWORD GATE */
+.pw-gate{
+  position:fixed;inset:0;z-index:9999;
+  background:#000;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Inter',sans-serif;
+}
+.pw-gate.hidden{display:none}
+.pw-box{text-align:center;max-width:380px;padding:0 24px}
+.pw-box h1{
+  font-family:'Inter',sans-serif;
+  color:#fff;font-size:1.6rem;font-weight:700;
+  letter-spacing:.05em;margin-bottom:8px;
+}
+.pw-box p{color:#9CA3AF;font-size:.9rem;margin-bottom:32px}
+.pw-input{
+  width:100%;padding:14px 18px;
+  background:#0A0A0A;border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;color:#fff;font-size:1rem;
+  font-family:'Inter',sans-serif;
+  outline:none;transition:border-color .3s;
+}
+.pw-input:focus{border-color:var(--accent)}
+.pw-input::placeholder{color:#5C6270}
+.pw-submit{
+  width:100%;margin-top:12px;padding:14px;
+  background:var(--accent);color:#fff;
+  border:none;border-radius:8px;font-size:.95rem;
+  font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;
+  transition:background .3s;
+}
+.pw-submit:hover{background:var(--accent-hover)}
+.pw-error{color:#F87171;font-size:.8rem;margin-top:12px;min-height:1.2em}
+
+/* SCROLL REVEAL */
+.reveal{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);
+}
+.reveal.vis{opacity:1;transform:none}
+.rstag > .reveal:nth-child(2){transition-delay:.08s}
+.rstag > .reveal:nth-child(3){transition-delay:.16s}
+.rstag > .reveal:nth-child(4){transition-delay:.24s}
+
+/* VERSION TOGGLE */
+.version-toggle{
+  position:fixed;bottom:24px;right:24px;z-index:200;
+  display:flex;align-items:center;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(124,58,237,.25);
+  border-radius:999px;padding:4px;
+  box-shadow:0 4px 24px rgba(0,0,0,.5),0 0 0 1px rgba(124,58,237,.05);
+}
+.version-toggle-label{
+  font-family:'Inter',sans-serif;font-size:.6rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.18em;
+  color:#6B7280;padding:0 12px 0 10px;white-space:nowrap;
+}
+.version-toggle a{
+  padding:8px 16px;
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:#9CA3AF;text-decoration:none;
+  border-radius:999px;transition:all .3s;
+}
+.version-toggle a.active{
+  background:var(--accent);color:#fff;
+  box-shadow:0 2px 12px rgba(124,58,237,.4);
+}
+.version-toggle a:not(.active):hover{color:#fff}
+@media(max-width:480px){
+  .version-toggle-label{display:none}
+  .version-toggle{padding:3px}
+  .version-toggle a{padding:6px 10px;font-size:.62rem;letter-spacing:.1em}
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .services-grid{grid-template-columns:1fr}
+  .ondemand-grid{grid-template-columns:1fr}
+  .about-layout{grid-template-columns:1fr}
+  .about-quote-block{order:-1}
+  .case-metrics{grid-template-columns:1fr 1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap;justify-content:center}
+}
+
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-links.open{
+    display:flex;flex-direction:column;
+    align-items:stretch;
+    position:fixed;top:80px;left:0;right:0;
+    height:calc(100vh - 80px);
+    background:#16141F;
+    padding:24px 20px 48px;
+    gap:10px;z-index:999;
+    border-top:2px solid var(--accent);
+    box-shadow:0 12px 48px rgba(0,0,0,.8);
+    overflow-y:auto;
+  }
+  .nav-links.open li{width:100%;list-style:none}
+  .nav-links.open a{
+    display:block;width:100%;
+    font-size:1.15rem;color:#fff;font-weight:600;
+    padding:18px 20px;
+    background:#24212F;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:8px;
+    letter-spacing:.02em;
+    transition:all .2s;
+    text-decoration:none;
+  }
+  .nav-links.open a:hover,
+  .nav-links.open a:active{
+    background:#2D2A3D;border-color:var(--accent);color:#fff;
+  }
+  .nav-links.open .cta-link{
+    background:var(--accent);color:#fff;
+    text-align:center;padding:20px 24px;
+    font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:1rem;
+    border:none;margin-top:6px;
+  }
+  .nav-links.open .cta-link:hover,
+  .nav-links.open .cta-link:active{background:var(--accent-hover);color:#fff}
+  .case-metrics{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(2.2rem,9vw,3.6rem);line-height:1.05}
+  .hero-intro{font-size:1rem}
+  .hero-stat-val{font-size:clamp(1.4rem,4.5vw,2rem)}
+}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div class="pw-gate" id="pwGate">
+  <div class="pw-box">
+    <h1>PURSUIT TALENT ADVISORY</h1>
+    <p>Enter the password to preview this site.</p>
+    <form id="pwForm">
+      <input class="pw-input" id="pwInput" type="password" placeholder="Password" autocomplete="off" autofocus>
+      <button class="pw-submit" type="submit">Enter</button>
+      <div class="pw-error" id="pwError"></div>
+    </form>
+  </div>
+</div>
+
+<canvas id="cvs-ladder"></canvas>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo-link" aria-label="Pursuit Talent Advisory">
+    <img src="pursuit-logo.png" alt="Pursuit Talent Advisory" class="nav-logo" onerror="this.style.display='none';this.parentNode.classList.add('nav-logo-fallback')">
+  </a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#ondemand">On Demand</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#results">Engagements</a></li>
+    <li><a href="#contact" class="cta-link">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">
+      <span class="rule"></span>
+      <span class="eyebrow">Pursuit Talent Advisory</span>
+    </div>
+    <h1 class="reveal">Hire above your <em>weight.</em></h1>
+    <div class="hero-bottom reveal">
+      <p class="hero-intro">15 years on both sides of the talent problem. We blend the strategic advantage of an internal TA team with the speed, flexibility, and reach of an experienced staffing partner. Built for founders making foundational hires pre-Series A.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-val">15+</span>
+          <span class="hero-stat-label">Years on Both Sides</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">Pre-Series A</span>
+          <span class="hero-stat-label">Stage Focus</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">Retained</span>
+          <span class="hero-stat-label">Engagement Model</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="s-about" id="about">
+  <div class="container">
+    <div class="about-layout">
+      <div class="about-quote-block reveal">
+        <p class="about-quote-text">15 years on both sides of the talent problem. Inside companies, building TA functions from scratch. Outside, as a search partner for businesses at exactly this stage. That experience is the whole point.</p>
+        <p class="about-quote-attr">Pursuit Talent Advisory</p>
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow">About</span>
+        <h2>Built on both sides of the table.</h2>
+        <p>Most recruiters have only ever worked one side. We've built internal TA functions from zero, including the full hiring engine for an 800-person organization. And we've run retained search from the outside for the founders making the hires that define a company.</p>
+        <p>That dual perspective is why we work the way we do. We know what good looks like because we've had to build it, hire for it, and live with the results.</p>
+        <div class="about-tags">
+          <span>15+ Years in TA</span>
+          <span>Retained Search</span>
+          <span>TA Infrastructure</span>
+          <span>Pre-Series A Focus</span>
+          <span>Austin Market</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ON DEMAND, ON POINT -->
+<section class="s-ondemand" id="ondemand">
+  <div class="container">
+    <div class="s-head">
+      <span class="eyebrow reveal">Our Approach</span>
+      <h2 class="reveal">On Demand, On Point.</h2>
+      <p class="reveal">Adaptive hiring support tailored to your stage. We plug in for the roles that matter most, without the burden of ongoing commitments.</p>
+    </div>
+    <div class="ondemand-grid rstag">
+      <div class="ondemand-card reveal">
+        <span class="ondemand-card-headline">On Demand</span>
+        <p class="ondemand-card-sub">Flexible support that scales with your needs. No bloated retainers, no long-term lock-in. We plug in when the hiring matters and step back when it doesn't.</p>
+      </div>
+      <div class="ondemand-card reveal">
+        <span class="ondemand-card-headline">On Point</span>
+        <p class="ondemand-card-sub">Senior-led and precise. Every search gets direct attention from someone who's done the work, not a junior coordinator and a job board.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR SERVICES — 4 CARDS -->
+<section class="s-services" id="services">
+  <div class="container">
+    <div class="s-head">
+      <span class="eyebrow reveal">What We Do</span>
+      <h2 class="reveal">Four ways to work with us.</h2>
+      <p class="s-head-tagline reveal">Built for the in-between.</p>
+      <p class="reveal">For the stage past "we'll figure it out later" but before a full internal TA team. We adapt to what your company actually needs.</p>
+    </div>
+
+    <div class="services-grid rstag">
+      <div class="service-card reveal">
+        <div class="service-card-num">01 · Embedded</div>
+        <h3>Embedded Recruiting Solutions</h3>
+        <p class="service-card-desc">A dedicated recruiter inside your team, owning end-to-end hiring for a defined engagement. Senior-led from intake through close. Ideal when hiring volume warrants a partner but not a full TA function.</p>
+        <ul>
+          <li>Dedicated recruiter embedded with leadership</li>
+          <li>Sourcing, screening, interview calibration</li>
+          <li>Offer strategy and close</li>
+          <li>Process and tooling left behind</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-card-num">02 · Advisory</div>
+        <h3>Talent Acquisition Advisory</h3>
+        <p class="service-card-desc">Strategic consulting and infrastructure builds for companies designing or rebuilding their hiring engine. We assess the current state, design the system, build it, and leave behind infrastructure that compounds. So you're not dependent on outside help forever.</p>
+        <ul>
+          <li>Hiring plans tied to the business plan</li>
+          <li>ATS selection, configuration, rollout</li>
+          <li>Interview frameworks and scorecards</li>
+          <li>Compensation benchmarking and offer strategy</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-card-num">03 · Search</div>
+        <h3>Contingency &amp; Retained Search</h3>
+        <p class="service-card-desc">Direct hire placements and retained searches for foundational roles you can't afford to get wrong. We work retained. Not splitting attention across 30 active searches. You work directly with a senior partner.</p>
+        <ul>
+          <li>Senior partner on every conversation</li>
+          <li>Specialized GTM, sales, engineering, product</li>
+          <li>Multi-hire campaigns for growth builds</li>
+          <li>Pricing tied to what the role requires</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-card-num">04 · Augmentation</div>
+        <h3>Staff Augmentation</h3>
+        <p class="service-card-desc">A fractional recruiter plugged into your team for the duration of a hiring sprint. We scale up for the surge and step back when volume normalizes. No long-term contracts. No idle headcount.</p>
+        <ul>
+          <li>Fractional engagement on your team</li>
+          <li>Hours scoped to your hiring volume</li>
+          <li>Surge support during peak periods</li>
+          <li>No long-term contract required</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET KNOWLEDGE — AUSTIN -->
+<section class="s-market" id="market">
+  <div class="container">
+    <div class="s-head">
+      <span class="eyebrow reveal">The Austin Advantage</span>
+      <h2 class="reveal">We know the Austin market.</h2>
+      <p class="reveal">Reputation here opens doors for your company that cold outreach can't. Our network in Austin runs deep across GTM, sales, engineering, and product talent.</p>
+    </div>
+    <div class="market-statement reveal">
+      <div class="market-points">
+        <span class="market-point">Who's active.</span>
+        <span class="market-point">Who's passively open.</span>
+        <span class="market-point">How to reach them.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT ENGAGEMENTS -->
+<section class="s-results" id="results">
+  <div class="container">
+    <div class="s-head">
+      <span class="eyebrow reveal">Recent Engagements</span>
+      <h2 class="reveal">A snapshot of recent work.</h2>
+      <p class="reveal">Companies we've partnered with at the foundational stage.</p>
+    </div>
+
+    <div class="case-studies">
+      <div class="case reveal">
+        <div class="case-tag">TA Infrastructure</div>
+        <div class="case-narrative">
+          <h3>National Beverage Brand</h3>
+          <p>An 800-employee organization with no internal recruiter. We built the function from scratch. Process, ATS, compensation structures, employer branding. We transformed how they attract and hire across the business.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">800+</span><span class="metric-label">Employees</span></div>
+          <div class="metric"><span class="metric-val">0 &rarr; 1</span><span class="metric-label">TA Function Built</span></div>
+          <div class="metric"><span class="metric-val">Full Stack</span><span class="metric-label">ATS · Process · Brand</span></div>
+          <div class="metric"><span class="metric-val">Ongoing</span><span class="metric-label">Strategic Partnership</span></div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-tag">Retained Search</div>
+        <div class="case-narrative">
+          <h3>Venture-Backed Fintech</h3>
+          <p>A fintech platform needed senior leadership across development, go-to-market, and engineering. Through retained search, we placed the roles that set the foundation for their next stage of growth.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">3</span><span class="metric-label">Retained Searches</span></div>
+          <div class="metric"><span class="metric-val">Executive</span><span class="metric-label">Caliber Talent</span></div>
+          <div class="metric"><span class="metric-val">2 of 3</span><span class="metric-label">Placed to Date</span></div>
+          <div class="metric"><span class="metric-val">Senior</span><span class="metric-label">Leadership Roles</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="s-reviews">
+  <div class="container">
+    <span class="eyebrow reveal">Reviews</span>
+    <div class="reviews-grid rstag">
+      <div class="review-card reveal">
+        <div class="review-avatar">JS</div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-headline">&ldquo;Passion &amp; Purpose&rdquo;</div>
+        <div class="review-body">
+          <span class="review-preview">&ldquo;Jake is a selfless partner who will do anything to&hellip;&rdquo;</span>
+          <span class="review-full">&ldquo;Jake is a selfless partner who will do anything to help someone in need. His clients and business partners love him because of the staffing core competencies he exhibits every day.&rdquo;</span>
+        </div>
+        <div class="review-attr">Joe Swenson</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-avatar">CW</div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-headline">&ldquo;Proven Track Record&rdquo;</div>
+        <div class="review-body">
+          <span class="review-preview">&ldquo;Jake has a proven track record and is a delight t&hellip;&rdquo;</span>
+          <span class="review-full">&ldquo;Jake has a proven track record and is a delight to work with! He was highly engaged and motivated which resulted in him finding us the perfect candidate.&rdquo;</span>
+        </div>
+        <div class="review-attr">Caroline Wade</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-avatar">DF</div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-headline">&ldquo;HIGHLY Recommended&rdquo;</div>
+        <div class="review-body">
+          <span class="review-preview">&ldquo;I worked with Jake this past year and found his&hellip;&rdquo;</span>
+          <span class="review-full">&ldquo;I worked with Jake this past year and found his capabilities and commitment to be above reproach. He took the time to understand my career goals and he remains committed to our relationship.&rdquo;</span>
+        </div>
+        <div class="review-attr">David Fisher</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="s-cta" id="contact">
+  <div class="container">
+    <h2 class="reveal">Let's chart a better path forward.</h2>
+    <p class="reveal">Pre-Series A hiring deserves a partner who's done the work, inside and outside. Let's take a closer look at where you are today and see if we're a fit.</p>
+    <div class="reveal">
+      <a href="mailto:jake@pursuittalentadvisory.io" class="btn">Schedule a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-brand-name">Pursuit</span>
+        <p>Modern talent acquisition for founders making foundational hires. We blend the strategic advantage of an internal TA team with the speed and reach of an experienced staffing partner.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Embedded Recruiting</a>
+        <a href="#services">TA Advisory</a>
+        <a href="#services">Contingency &amp; Retained Search</a>
+        <a href="#services">Staff Augmentation</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#about">About</a>
+        <a href="#ondemand">On Demand, On Point</a>
+        <a href="#results">Engagements</a>
+      </div>
+      <div class="footer-col">
+        <h5>Get In Touch</h5>
+        <a href="mailto:jake@pursuittalentadvisory.io">jake@pursuittalentadvisory.io</a>
+        <a href="tel:5126809696">(512) 680-9696</a>
+        <span>Austin, Texas</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pursuit Talent Advisory LLC. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/jake" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- VERSION TOGGLE -->
+<div class="version-toggle" role="navigation" aria-label="Site version">
+  <span class="version-toggle-label">Version</span>
+  <a href="index.html">V1</a>
+  <a href="v2.html">V2</a>
+  <a href="v3.html">V3</a>
+  <a href="v4.html" class="active" aria-current="page">V4</a>
+</div>
+
+<script>
+// PASSWORD GATE
+(function(){
+  const gate=document.getElementById('pwGate');
+  const form=document.getElementById('pwForm');
+  const input=document.getElementById('pwInput');
+  const err=document.getElementById('pwError');
+  const PW='pursuit';
+  if(sessionStorage.getItem('pw-ok')==='1'){gate.classList.add('hidden')}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(input.value===PW){
+      sessionStorage.setItem('pw-ok','1');
+      gate.classList.add('hidden');
+    }else{
+      err.textContent='Incorrect password. Please try again.';
+      input.value='';input.focus();
+    }
+  });
+})();
+
+// NAV SCROLL STATE + SCROLL REVEAL + SMOOTH ANCHORS
+(function(){
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);
+  },{passive:true});
+
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+  },{threshold:.12,rootMargin:'0px 0px -32px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const href=a.getAttribute('href');
+      if(href==='#')return;
+      e.preventDefault();
+      const t=document.querySelector(href);
+      if(t){t.scrollIntoView({behavior:'smooth',block:'start'});document.querySelector('.nav-links')?.classList.remove('open')}
+    });
+  });
+})();
+
+// PURPLE ORB CANVAS ANIMATION
+(function(){
+  const c=document.getElementById('cvs-ladder'),ctx=c.getContext('2d');
+  let w,h,orbs=[],raf=null,running=false,t=0;
+  const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+  function init(){
+    resize();
+    orbs=[
+      {x:w*.2,y:h*.3,r:w*.22,vx:.15,vy:.1,hue:270},
+      {x:w*.7,y:h*.6,r:w*.28,vx:-.12,vy:.08,hue:260},
+      {x:w*.5,y:h*.15,r:w*.18,vx:.08,vy:-.12,hue:280},
+      {x:w*.8,y:h*.2,r:w*.15,vx:-.1,vy:.15,hue:250}
+    ];
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(const o of orbs){
+      const g=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);
+      g.addColorStop(0,'hsla('+o.hue+',70%,50%,.12)');
+      g.addColorStop(.5,'hsla('+o.hue+',70%,40%,.04)');
+      g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fill();
+    }
+  }
+  function update(){
+    if(rm)return;t+=.003;
+    for(const o of orbs){
+      o.x+=Math.sin(t*o.vx*10)*.4;o.y+=Math.cos(t*o.vy*10)*.4;
+      if(o.x<-o.r)o.x=w+o.r;if(o.x>w+o.r)o.x=-o.r;
+      if(o.y<-o.r)o.y=h+o.r;if(o.y>h+o.r)o.y=-o.r;
+    }
+  }
+  function loop(){if(!running)return;update();draw();raf=requestAnimationFrame(loop)}
+  running=true;init();loop();
+  addEventListener('resize',()=>{if(running){resize();init()}},{passive:true});
+})();
+</script>
+
+</body>
+</html>
